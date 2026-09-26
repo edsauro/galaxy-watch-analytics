@@ -1,0 +1,12 @@
+# Dependências do Reports Samsung Health
+#
+# Versões mínimas testadas. O projeto roda em Python 3.11+.
+
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+
+# Gráficos. O kaleido é o motor de exportação (PNG/SVG) do plotly — sem ele os
+# gráficos não saem do navegador.
+plotly>=5.20
+kaleido>=0.2.1

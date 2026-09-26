@@ -1,0 +1,42 @@
+# ------------------------------------------------------------------ dado bruto
+# O export do Samsung Health é dado pessoal sensível e NUNCA deve ser commitado.
+# O nome do arquivo do export costuma carregar o nome da pessoa.
+data/
+*.zip
+samsunghealth_*
+
+# ------------------------------------------------------------------ dado gerado
+report/
+*.db
+*.sqlite
+*.sqlite3
+*.json
+!package.json
+*.csv
+*.png
+*.pdf
+*.ogg
+*.mp3
+
+# ------------------------------------------------------------------- python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ------------------------------------------------------------------- editores
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# --------------------------------------------------- configuração pessoal
+# Módulo opcional de correções locais (ex.: quais trechos são deslocamento de
+# carro e não pedal). Depende de coordenadas suas — fica fora do repositório.
+correcoes.py
+.env
