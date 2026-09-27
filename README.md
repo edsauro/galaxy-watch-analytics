@@ -7,6 +7,10 @@ JSONs e gráficos.
 Não é um aplicativo e não se conecta a nada. Você baixa o export, aponta o
 caminho e roda os scripts. **Todo processamento é local.**
 
+> **Nunca mexeu com terminal?** Comece pelo **[QuickStart.md](QuickStart.md)** —
+> guia passo a passo, com os textos prontos para colar em um assistente de IA
+> (Hermes, Claude Code, Codex, Antigravity, OpenCode) que faz o trabalho por você.
+
 ---
 
 ## O que este projeto resolve
