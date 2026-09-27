@@ -4,7 +4,7 @@ Guia para quem **nunca mexeu com terminal** e quer analisar os dados do próprio
 Galaxy Watch.
 
 A ideia é simples: você instala um assistente de IA que roda no seu computador,
-cola dois textos prontos que estão aqui, e ele faz o trabalho. Você não precisa
+cola os textos prontos que estão aqui, e ele faz o trabalho. Você não precisa
 saber programar — precisa saber copiar e colar.
 
 Tudo acontece na sua máquina. Seus dados de saúde **não saem do seu computador**
@@ -17,34 +17,73 @@ em momento nenhum.
 - **Um computador** com Linux ou macOS. No Windows, use o WSL (o próprio
   instalador do Windows tem, é um programa comum).
 - **Python 3.11 ou mais novo** — [python.org/downloads](https://www.python.org/downloads/)
-- **Um assistente de IA** (veja abaixo) — todos exigem uma conta no serviço
-  correspondente. Alguns têm plano gratuito, outros são pagos.
+- **Um assistente de IA** (veja abaixo)
 - **Uns 30 minutos** na primeira vez. Depois leva menos.
 
 ---
 
 ## Passo 1 — escolha um assistente de IA
 
-Qualquer um destes funciona. Todos rodam no terminal e sabem ler arquivos do seu
-computador, que é o que o projeto precisa.
+As três opções abaixo funcionam **sem pagar nada**. Escolha pela conta que você
+já tem.
 
-| Assistente | De quem | Como instalar |
-|---|---|---|
-| **Hermes Agent** | Nous Research | `curl -fsSL https://hermes-agent.nousresearch.com/install.sh \| bash` — [docs](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) |
-| **Claude Code** | Anthropic | `npm install -g @anthropic-ai/claude-code` — [site](https://claude.com/product/claude-code) |
-| **Codex CLI** | OpenAI | `npm i -g @openai/codex` — [npm](https://www.npmjs.com/package/@openai/codex) |
-| **Antigravity CLI** | Google | [antigravity.google/docs/cli/install](https://antigravity.google/docs/cli/install/) |
-| **OpenCode** | open source | `curl -fsSL https://opencode.ai/install \| bash` — [site](https://opencode.ai) |
+### Opção A — Codex CLI, com sua conta ChatGPT gratuita ⭐
 
-**Qual escolher?** Se você não tem preferência, comece pelo **Hermes Agent** ou
-pelo **Claude Code** — são os que têm a instalação mais simples e a melhor
-conversa em português. Este projeto inclusive traz um arquivo `SKILL.md` que o
-Hermes reconhece sozinho.
+Se você já usa o ChatGPT, é o caminho mais curto. O Codex está incluído nos
+planos do ChatGPT, **inclusive o gratuito** — o limite de uso é menor, mas dá
+conta desta tarefa.
 
-> Os comandos com `npm` precisam do [Node.js](https://nodejs.org) instalado antes.
+```bash
+npm i -g @openai/codex
+codex
+```
 
-Depois de instalar, abra o terminal e digite o nome do assistente (por exemplo,
-`hermes` ou `claude`) para confirmar que ele abre.
+Na primeira vez ele abre o navegador para você entrar com sua conta. Precisa do
+[Node.js](https://nodejs.org) instalado antes.
+
+### Opção B — Antigravity CLI, com sua conta Google gratuita ⭐
+
+O agente do Google. Gratuito para uso individual, com acesso aos modelos Gemini.
+Boa escolha se você não tem conta no ChatGPT.
+
+Instalação e login: **[antigravity.google/docs/cli/install](https://antigravity.google/docs/cli/install/)**
+
+Depois de instalar, é só digitar `agy` no terminal.
+
+### Opção C — OpenCode, com um modelo gratuito
+
+O OpenCode é código aberto e não cobra pelo programa. Ele se conecta a um
+provedor de modelo — e o **OpenCode Zen** oferece vários modelos de custo zero.
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+opencode
+```
+
+Dentro do OpenCode:
+
+1. Digite `/connect` e escolha **OpenCode Zen**
+2. Crie a conta em [opencode.ai](https://opencode.ai) — **pule a parte de
+   pagamento**, não precisa de cartão
+3. Cole a chave que ele mostrar
+4. Digite `/models` e escolha **`deepseek-v4-flash-free`**
+
+O `deepseek-v4-flash-free` é a melhor escolha entre os gratuitos para este
+projeto: é forte em código e em análise de dados. Se quiser alternativa, o
+`nemotron-3-ultra-free` também está na lista.
+
+> A lista de modelos gratuitos muda com o tempo. Se algum não aparecer, rode
+> `/models` e escolha outro que termine em `-free`.
+
+### Também funcionam, mas dão mais trabalho
+
+| Assistente | Por que ficou de fora da lista de cima |
+|---|---|
+| **Hermes Agent** (Nous Research) | Precisa configurar uma chave de API do provedor que você escolher — mais passos na instalação |
+| **Claude Code** (Anthropic) | **Não tem plano gratuito** — exige assinatura paga |
+
+Se você já usa um deles, funciona igual: os textos dos Passos 2 e 4 são os
+mesmos.
 
 ---
 
@@ -57,12 +96,11 @@ Baixe o projeto https://github.com/edsauro/galaxy-watch-analytics para a pasta
 ~/Code/galaxy-watch-analytics. Leia o README.md e o SKILL.md, crie um ambiente
 virtual Python e instale as dependências do requirements.txt.
 
-No fim, me responda três coisas:
-1. Qual versão do Python você encontrou;
-2. Se algum comando falhou, e o que eu devo fazer;
-3. O caminho exato da pasta onde eu devo colocar o export do meu relógio.
+Me diga se algum comando falhou e o que eu preciso fazer.
 
-Não rode nenhuma análise ainda — eu ainda não baixei meus dados.
+Ainda não tenho os dados: vou baixar o export do meu relógio e, quando chegar,
+te passo o caminho do arquivo .zip para você mesmo descompactar e configurar.
+Deixe tudo pronto até lá.
 ```
 
 Ele vai trabalhar sozinho por alguns minutos. Se reclamar que falta Python ou
@@ -72,7 +110,7 @@ Node, instale o que ele pedir e peça para continuar.
 
 ## Passo 3 — baixe seus dados do Galaxy Watch
 
-Isso é feito no **celular**, no aplicativo Samsung Health. Leva alguns minutos e
+Isso é feito no **celular**, no aplicativo Samsung Health. Leva alguns minutos, e
 a Samsung manda o arquivo por e-mail depois — às vezes leva algumas horas.
 
 1. Abra o **Samsung Health** no celular
@@ -84,8 +122,9 @@ a Samsung manda o arquivo por e-mail depois — às vezes leva algumas horas.
 
 Quando o e-mail chegar:
 
-6. Baixe o arquivo `.zip` no computador
-7. Descompacte na pasta que o assistente indicou no Passo 2
+6. Baixe o arquivo `.zip` no computador — **não precisa descompactar**, o
+   assistente faz isso
+7. Anote o caminho do arquivo (no Linux e no macOS costuma cair em `~/Downloads`)
 
 O nome do arquivo é parecido com `samsunghealth_seunome_20260917073135.zip`.
 **Esse arquivo tem o seu nome e o seu histórico de saúde.** Não mande para
@@ -95,13 +134,15 @@ ninguém, não suba em nuvem pública, não coloque no GitHub.
 
 ## Passo 4 — peça a análise
 
-Com os dados no lugar, **cole este texto** no assistente, trocando o caminho pelo
-que ele te deu no Passo 2:
+Com o zip baixado, **cole este texto** no assistente, trocando o caminho pelo do
+seu arquivo:
 
 ```
-Meu export do Samsung Health está em: COLE_AQUI_O_CAMINHO_DA_PASTA
+O export do meu relógio chegou. O arquivo está em:
+COLE_AQUI_O_CAMINHO_DO_ARQUIVO.zip
 
-Leia o SKILL.md do projeto em ~/Code/galaxy-watch-analytics e faça:
+Descompacte você mesmo e aponte o projeto para a pasta correta. Depois leia o
+SKILL.md do projeto em ~/Code/galaxy-watch-analytics e faça:
 
 1. Rode, nesta ordem: analise_sono.py, analise_vitality.py, analise_extras.py e
    build_sqlite.py, escrevendo os resultados em ~/Code/galaxy-watch-analytics/report/
@@ -142,9 +183,8 @@ relevantes e mais bem sustentados pelos dados.
 
 ## Se algo der errado
 
-**"Não encontrei nenhum export"** — a pasta está no lugar errado, ou o zip não
-foi descompactado. Diga ao assistente onde o arquivo está e peça para ele
-apontar o caminho.
+**"Não encontrei nenhum export"** — o caminho está errado, ou o zip não foi
+descompactado. Diga ao assistente onde o arquivo está e peça para ele resolver.
 
 **"No module named pandas"** — as dependências não instalaram. Peça para o
 assistente refazer o Passo 2.
@@ -156,6 +196,9 @@ errada na leitura e ele precisa investigar.
 
 **Ele tirou uma conclusão muito forte de poucos dados** — desconfie. Peça:
 *"quantas noites sustentam essa afirmação?"* Menos de dez não sustenta quase nada.
+
+**Acabou o limite de uso do assistente** — espere o período renovar. O trabalho
+não se perde: os dados e os resultados já estão no seu computador.
 
 ---
 

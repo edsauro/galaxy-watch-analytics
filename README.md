@@ -9,7 +9,8 @@ caminho e roda os scripts. **Todo processamento é local.**
 
 > **Nunca mexeu com terminal?** Comece pelo **[QuickStart.md](QuickStart.md)** —
 > guia passo a passo, com os textos prontos para colar em um assistente de IA
-> (Hermes, Claude Code, Codex, Antigravity, OpenCode) que faz o trabalho por você.
+> que faz o trabalho por você. Há três opções gratuitas: **Codex** (conta ChatGPT
+> free), **Antigravity** (conta Google free) e **OpenCode** (com modelo grátis).
 
 ---
 
